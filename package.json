@@ -1,0 +1,17 @@
+{
+  "name": "umfrage-export",
+  "version": "1.0.0",
+  "description": "Umfrage-Grafik als PNG exportieren",
+  "main": "screenshotter.js",
+  "scripts": {
+    "export": "node screenshotter.js",
+    "export-simple": "node simple-export.js",
+    "export-hd": "node screenshotter.js --width 1000 --height 800 --deviceScaleFactor 2",
+    "export-4k": "node screenshotter.js --width 2000 --height 1500 --deviceScaleFactor 3",
+    "export-jpeg": "node screenshotter.js --format jpeg --quality 90",
+    "export-mobile": "node screenshotter.js --width 375 --height 800 --deviceScaleFactor 2"
+  },
+  "dependencies": {
+    "puppeteer": "^24.7.2"
+  }
+}
