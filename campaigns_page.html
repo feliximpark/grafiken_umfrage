@@ -1,0 +1,906 @@
+<html><head>
+	<title>Kampagnen</title>
+	<meta charset="utf-8">
+	<meta name="author" content="DRID Kommunikation und Design GmbH">
+	<style>
+		:root {
+			--fe-color-primary: #193b66;
+--fe-color-primary-00: rgba(25,59,102,0);
+--fe-color-primary-03: rgba(25,59,102,.3);
+--fe-color-primary-07: rgba(25,59,102,.7);
+--fe-color-primary-08: rgba(25,59,102,.8);
+--fe-color-primary-09: rgba(25,59,102,.9);
+--fe-color-secondary: #193b66;
+		}
+	</style>
+	<link rel="stylesheet" href="https://leser-umfrage.de/css/backend.css?r=20250422-100511">
+		<link rel="shortcut icon" href="https://leser-umfrage.de/img/backend/favicon-64x64.png">
+</head>
+	<body class="full-width" data-page-type="campaign-list" data-filter-scope="campaigns">
+		<main>
+			<div class="wrapper">
+				<div class="menu-app">
+	<a class="menu-logo" href="https://leser-umfrage.de/backend/">
+					<img src="https://leser-umfrage.de/img/backend/campanero-logo-app.svg">
+			</a>
+	<div class="menu-app-inner">
+		<div class="menu-app-content">
+			<div class="menu-app-items">
+				<div class="menu-app-item ">
+					<a href="https://leser-umfrage.de/backend/" class="menu-app-item-clickable">
+						<span class="label">Dashboard</span>
+					</a>
+				</div>
+
+									<div class="menu-app-item selected">
+						<a href="https://leser-umfrage.de/backend/campaigns" class="menu-app-item-clickable">
+							<span class="label">Kampagnen</span>
+						</a>
+						<div class="menu-app-sub">
+							<div class="menu-app-sub-inner">
+								
+								<a href="https://leser-umfrage.de/backend/campaigns/archive" class="menu-app-sub-item">
+									<span class="label">Kampagnen-Archiv</span>
+								</a>
+								<a href="https://leser-umfrage.de/backend/campaigns/reporting" class="menu-app-sub-item">
+									<span class="label">Kampagnen-Auswertung gesamt</span>
+								</a>
+																	<a href="https://leser-umfrage.de/backend/campaigns/delayed-doi" class="menu-app-sub-item">
+										<span class="label">Download nachträgliche DOI-Bestätigungen</span>
+									</a>
+															</div>
+						</div>
+					</div>
+																								</div>
+
+			<div class="menu-app-icons">
+				<a href="https://leser-umfrage.de/backend/user/profile" class="menu-app-icon-container " data-tooltip="Mein Account">
+					<span class="menu-app-icon fal fa-user"></span>
+				</a>
+				<a class="menu-app-icon-container  " href="https://leser-umfrage.de/backend/user/messages" data-tooltip="Benachrichtigungen">
+					<span class="menu-app-icon fal fa-envelope"></span>
+				</a>
+				<span class="menu-app-icon-container" data-name="help" data-tooltip="Hilfe">
+					<span class="menu-app-icon fal fa-question-circle"></span>
+				</span>
+				<a href="https://leser-umfrage.de/backend/updates" class="menu-app-icon-container " data-tooltip="campanero Updates">
+					<span class="menu-app-icon fal fa-lightbulb"></span>
+				</a>
+				<a class="menu-app-icon-container" data-name="logout" data-tooltip="Ausloggen">
+					<span class="menu-app-icon fal fa-sign-out"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+				<div class="menu-header">
+					<span class="menu-title">
+						Kampagnen					</span>
+					<div class="menu-header-inner">
+						<div class="list-types flex">
+							<div class="list-types-scroll flex">
+								<div class="list-types-scroll-inner flex">
+									<div class="item table-filter selected" data-type="type" data-value="" data-default="1">Alle</div>
+									<div class="item table-filter" data-type="type" data-value="survey">Umfragen</div><div class="item table-filter" data-type="type" data-value="quiz">Quizze</div><div class="item table-filter" data-type="type" data-value="offer">Landingpages</div><div class="item table-filter" data-type="type" data-value="calendar">Kalender</div><div class="item table-filter" data-type="type" data-value="picturecontest">Foto-Contests</div><div class="item table-filter" data-type="type" data-value="onepager">Onepager</div>								</div>
+							</div>
+						</div>
+						<div class="menu-header-actions">
+							<a class="menu-header-action-icon fal fa-download" data-name="button-download" data-tooltip="Kampagnenliste herunterladen"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-loader hidden">
+	<div></div><div></div><div></div>
+</div>
+<div class="menu menu-sidebar">
+	<div class="menu-items">
+		<span class="menu-item brand-item table-filter selected" data-type="brand" data-value="21,31,70" data-default="1"><span class="brand-name text-overflow">Alle Titel</span></span><span class="menu-item brand-item table-filter" data-editable="0" data-type="brand" data-value="21" data-shortcut="maz" data-name="Märkische Allgemeine Zeitung"><span class="icon-new mark-new" data-tooltip="Es sind 21 neue Datensätze zum Exportieren vorhanden"><span class="fas fa-circle"></span></span><span class="brand-name text-overflow">Märkische Allgemeine Zeitung</span></span><span class="menu-item brand-item table-filter" data-editable="0" data-type="brand" data-value="31" data-shortcut="oz" data-name="Ostsee-Zeitung"><span class="icon-new mark-new" data-tooltip="Es sind 250 neue Datensätze zum Exportieren vorhanden"><span class="fas fa-circle"></span></span><span class="brand-name text-overflow">Ostsee-Zeitung</span></span><span class="menu-item brand-item table-filter" data-editable="0" data-type="brand" data-value="70" data-shortcut="rnd" data-name="RedaktionsNetzwerk Deutschland"><span class="icon-new mark-new" data-tooltip="Es sind 25 neue Datensätze zum Exportieren vorhanden"><span class="fas fa-circle"></span></span><span class="brand-name text-overflow">RedaktionsNetzwerk Deutschland</span></span>	</div>
+</div>
+
+				<div class="page">
+					<div class="page-content">
+
+						<div class="card notification list-filter-id hidden">
+							<div class="card-text">
+								Für eine schnellere Auffindbarkeit wurde die Liste auf die gewünschten Kampagne eingestellt.
+								Die Auswahl eines Titels hat auf diese Ansicht keine Auswirkungen.<br>
+								Um zur normalen Ansicht zurückzukehren, klicken Sie bitte <a class="textlink" data-name="reset-id"><b>hier</b></a>.
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="filter-row">
+								<div class="form-control form-search list-search">
+									<input class="form-input table-filter" type="text" data-type="title" data-value="" placeholder="Suche in Name…">
+									<div class="form-clear hidden"></div>
+								</div>
+								<div class="form-control" style="width: 280px;">
+									<label class="form-checkbox small no-margin">
+										<input type="checkbox" class="table-filter" data-type="includeArchive" data-toggle="1" value="1"><span>Archivierte Kampagnen einbeziehen</span>
+									</label>
+								</div>
+
+								<div class="form-control form-control-select" style="width: 180px;">
+									<select class="form-select table-filter" data-type="entries" data-value="">
+										<option value="10">Zeige 10 pro Seite</option>
+										<option value="25" data-default="1">Zeige 25 pro Seite</option>
+										<option value="50">Zeige 50 pro Seite</option>
+										<option value="100">Zeige 100 pro Seite</option>
+										<option value="200">Zeige 200 pro Seite</option>
+									</select>
+								</div>
+								<div class="form-control form-control-select" style="width: 250px;">
+									<select class="form-select table-filter filter-select" data-type="view" data-value="" data-tooltip="Anzeige Spalten">
+										<option value="startend" data-default="1">Zeige Start- und End-Datum</option>
+										<option value="activity">Zeige Letzte Aktivität</option>
+										<option value="leadsDetailsSimple">Zeige Registrierungen mit DOI</option>
+																					<option value="newsletters">Zeige Newsletter-Anmeldungen</option>
+																				<option value="views">Zeige Page Views</option>
+										<option value="benchmarks">Zeige Benchmarks</option>
+									</select>
+								</div>
+							</div>
+							<div class="filter-boxes more-filters">
+								<div class="filter-box-group">
+									<div class="filter-box">
+										<span class="filter-box-label">Kategorie</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="-1" data-default="1"><span class="check fal fa-check"></span><span>alle Kategorien</span></label><label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="0"><span class="check fal fa-check"></span><span>ohne Kategorie</span></label><label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="1"><span class="check fal fa-check"></span><span>Marketing / Lesermarkt (MAR)</span></label><label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="2"><span class="check fal fa-check"></span><span>Redaktion (RED)</span></label><label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="3"><span class="check fal fa-check"></span><span>Vermarktung (VER)</span></label><label class="filter-box-option"><input type="radio" class="table-filter" data-type="category" name="campaignCategory" data-value="4"><span class="check fal fa-check"></span><span>Native Advertising (ADS)</span></label>										</div>
+									</div>
+																		<div class="filter-box">
+										<span class="filter-box-label">Tags</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="checkbox" class="table-filter allow-no-selection" data-type="tags" name="campaignTags" data-value="6" data-default="0"><span class="check fal fa-check"></span><span>Champion</span></label><label class="filter-box-option"><input type="checkbox" class="table-filter allow-no-selection" data-type="tags" name="campaignTags" data-value="4" data-default="0"><span class="check fal fa-check"></span><span>Evergreen</span></label><label class="filter-box-option"><input type="checkbox" class="table-filter allow-no-selection" data-type="tags" name="campaignTags" data-value="5" data-default="0"><span class="check fal fa-check"></span><span>Vorlage</span></label>										</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Status</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="" data-default="1"><span class="check fal fa-check"></span><span>alle</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="new"><span class="check fal fa-check"></span><span>vorbereitet</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="active"><span class="check fal fa-check"></span><span>aktiv</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="ended"><span class="check fal fa-check"></span><span>beendet</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="approvalRequest"><span class="check fal fa-check"></span><span>Freigabe erforderlich</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="status" name="campaignStatus" data-value="approvalRejected"><span class="check fal fa-check"></span><span>Freigabe abgelehnt</span></label>
+										</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Start</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="" data-default="1"><span class="check fal fa-check"></span><span>beliebig</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="last7days"><span class="check fal fa-check"></span><span>letzte 7 Tage</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="last30days"><span class="check fal fa-check"></span><span>letzte 30 Tage</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="thisMonth"><span class="check fal fa-check"></span><span>dieser Monat</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="lastMonth"><span class="check fal fa-check"></span><span>letzter Monat</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2025"><span class="check fal fa-check"></span><span>2025</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2024"><span class="check fal fa-check"></span><span>2024</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2023"><span class="check fal fa-check"></span><span>2023</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2022"><span class="check fal fa-check"></span><span>2022</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2021"><span class="check fal fa-check"></span><span>2021</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateStart" name="campaignStart" data-value="2020"><span class="check fal fa-check"></span><span>2020</span></label>
+																					</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Ende</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="" data-default="1"><span class="check fal fa-check"></span><span>beliebig</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="last7days"><span class="check fal fa-check"></span><span>letzte 7 Tage</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="last30days"><span class="check fal fa-check"></span><span>letzte 30 Tage</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="thisMonth"><span class="check fal fa-check"></span><span>dieser Monat</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="lastMonth"><span class="check fal fa-check"></span><span>letzter Monat</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2025"><span class="check fal fa-check"></span><span>2025</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2024"><span class="check fal fa-check"></span><span>2024</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2023"><span class="check fal fa-check"></span><span>2023</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2022"><span class="check fal fa-check"></span><span>2022</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2021"><span class="check fal fa-check"></span><span>2021</span></label>
+																							<label class="filter-box-option"><input type="radio" class="table-filter" data-type="dateEnd" name="campaignEnd" data-value="2020"><span class="check fal fa-check"></span><span>2020</span></label>
+																					</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Letzte Aktivität</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="" data-default="1"><span class="check fal fa-check"></span><span>beliebig</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="within7days"><span class="check fal fa-check"></span><span>in letzten 7 Tagen</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="within30days"><span class="check fal fa-check"></span><span>in letzten 30 Tagen</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="over7days"><span class="check fal fa-check"></span><span>vor mehr als 7 Tagen</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="over1month"><span class="check fal fa-check"></span><span>vor mehr als 1 Monat</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="lastActivity" name="campaignActivity" data-value="over3months"><span class="check fal fa-check"></span><span>vor mehr als 3 Monaten</span></label>
+										</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Teilnehmer</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="user" name="campaignUser" data-value="" data-default="1"><span class="check fal fa-check"></span><span class="label">alle</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="user" name="campaignUser" data-value="with"><span class="check fal fa-check"></span><span class="label">mit</span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="user" name="campaignUser" data-value="without"><span class="check fal fa-check"></span><span class="label">ohne</span></label>
+										</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Registrierungen</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="leads" name="campaignLeads" data-value="" data-default="1"><span class="check fal fa-check"></span><span class="label"><span>alle</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="leads" name="campaignLeads" data-value="with"><span class="check fal fa-check"></span><span class="label"><span>mit</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="leads" name="campaignLeads" data-value="without"><span class="check fal fa-check"></span><span class="label"><span>ohne</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="leads" name="campaignLeads" data-value="new"><span class="check fal fa-check"></span><span class="label"><span>neu (nicht exportiert)</span></span></label>
+										</div>
+									</div>
+									<div class="filter-box">
+										<span class="filter-box-label">Bestellungen</span>
+										<span class="filter-box-arrow fal fa-chevron-down"></span>
+										<span class="filter-box-clear fal fa-times"></span>
+										<div class="filter-box-select">
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="orders" name="campaignOrders" data-value="" data-default="1"><span class="check fal fa-check"></span><span class="label"><span>alle</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="orders" name="campaignOrders" data-value="with"><span class="check fal fa-check"></span><span class="label"><span>mit</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="orders" name="campaignOrders" data-value="without"><span class="check fal fa-check"></span><span class="label"><span>ohne</span></span></label>
+											<label class="filter-box-option"><input type="radio" class="table-filter" data-type="orders" name="campaignOrders" data-value="new"><span class="check fal fa-check"></span><span class="label"><span>neu (nicht exportiert)</span></span></label>
+										</div>
+									</div>
+								</div>
+								<a class="form-button form-button-secondary hidden" data-name="filter-reset"><span class="button-icon far fa-undo"></span>Ansicht zurücksetzen</a>
+							</div>
+
+							<div class="card-head card-head-campaigns card-head-sticky">
+								<div class="card-title"><span class="table-info">Kampagnen 1-25 von 579</span></div>
+								<div class="card-actions">
+									<a class="form-button" data-name="new-campaign"><span class="button-icon fas fa-plus"></span>Neue Kampagne erstellen</a>
+								</div>
+							</div>
+
+							<div class="kpi-boxes kpi-boxes-plain kpi-boxes-table" style="--columns: 6;">
+	<div class="kpi-box" data-id="campaigns">
+		<div class="value">579</div>
+		<div class="title">Kampagnen</div>
+		<div class="percentage">241 davon aktiv</div>
+	</div>
+	<div class="kpi-box" data-id="views">
+		<div class="value">4.943.202</div>
+		<div class="title">Page Views</div>
+		<div class="percentage">∅ 8.537 pro Kampagne</div>
+	</div>
+	<div class="kpi-box" data-id="user">
+		<div class="value">242.503</div>
+		<div class="title">Teilnehmer</div>
+		<div class="percentage">∅ 419 pro Kampagne</div>
+	</div>
+	<div class="kpi-box" data-id="leads" data-tooltip="Die Conversion ist bezogen auf alle Kampagnen,#BR#in denen ein Registrierungsformular#BR#zur Verfügung steht.">
+		<div class="value">20.168</div>
+		<div class="title">Registrierungen</div>
+		<div class="percentage">12,1% Conversion</div>
+	</div>
+	<div class="kpi-box hidden" data-id="leadsDOI" data-tooltip="Die Conversion ist bezogen auf alle Kampagnen,#BR#in denen ein Registrierungsformular#BR#zur Verfügung steht.">
+		<div class="value"></div>
+		<div class="title">Registrierungen mit DOI</div>
+		<div class="percentage"></div>
+	</div>
+	<div class="kpi-box hidden" data-id="leadsUnique" data-tooltip="Die Conversion ist bezogen auf alle Kampagnen,#BR#in denen ein Registrierungsformular#BR#zur Verfügung steht.">
+		<div class="value"></div>
+		<div class="title">Registrierungen<br>unique</div>
+		<div class="percentage"></div>
+	</div>
+	<div class="kpi-box hidden" data-id="leadsUniqueDOI" data-tooltip="Die Conversion ist bezogen auf alle Kampagnen,#BR#in denen ein Registrierungsformular#BR#zur Verfügung steht.">
+		<div class="value"></div>
+		<div class="title">Registrierungen<br>unique mit DOI</div>
+		<div class="percentage"></div>
+	</div>
+			<div class="kpi-box" data-id="orders" data-tooltip="Die Conversion ist bezogen auf alle Kampagnen,#BR#in denen mindestens ein Abo-Angebot#BR#zur Verfügung steht.">
+			<div class="value">2.372</div>
+			<div class="title">Bestellungen</div>
+			<div class="percentage">3,7% Conversion</div>
+		</div>
+				<div class="kpi-box" data-id="newsletters" data-tooltip="">
+			<div class="value">19.032</div>
+			<div class="title">bestätigte NL-Anmeldungen</div>
+			<div class="percentage">von insgesamt 22.833 (83 %)</div>
+		</div>
+	</div>
+
+							<table class="content-table content-table-sticky-head list-table" data-id="campaigns"><thead><tr><th style="width: 40px;"></th><th class="align-center" style="width: 30px;"><span class="table-filter table-fav-icon list-filter-favourite fa-star fal" data-tooltip="Nur &quot;Meine Favouriten&quot; anzeigen"></span></th><th data-sort-order="default" data-sort-value="brand" style="width: 7%;">Titel</th><th data-sort-order="default" data-sort-value="type" style="width: 6%;">Typ</th><th data-sort-order="default" data-sort-value="category" style="width: 5%;">Kat.</th><th data-sort-order="default" data-sort-value="title" style="width: 18%;">Name</th><th data-sort-order="default" data-sort-value="dateStart" style="width: 8.5%;">Start</th><th data-sort-order="default" data-sort-value="dateEnd" style="width: 8.5%;">Ende</th><th class="align-center" data-sort-order="default" data-sort-value="user" colspan="2" style="width: 11%;">Teilnehmer</th><th class="align-center" data-sort-order="default" data-sort-value="leads" colspan="2" style="width: 11%;">Registrierungen</th><th class="align-center" data-sort-order="default" data-sort-value="orders" colspan="2" style="width: 11%;">Bestellungen</th><th class="align-right" data-sort-order="default" data-sort-value="status" style="width: 8%;">Status</th><th class="align-right" style="width: 106px;">Aktion</th></tr></thead><tbody><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25600"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">RND</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Politik in Sachsen 7.5.</td><td class="align-top" data-tooltip="Automatischer Kampagnenstart#BR#7. Mai 2025 - 5:00 Uhr">07.05.2025&nbsp;<span class="status-icon fal fa-clock"></span></td><td class="align-top" data-tooltip="Automatisches Kampagnenende#BR#7. Mai 2025 - 17:00 Uhr">07.05.2025&nbsp;<span class="status-icon fal fa-clock"></span></td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25472"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Muster NL-Umfrage (nur kopieren)<div class="tags"><div class="tag">Vorlage</div></div></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25449"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Umfrage</td><td class="align-top">MAR</td><td class="align-top">Feuerwehrhelden 2025 (2) Vorpommern-Greifswald und MSE&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25448"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Onepager</td><td class="align-top">RED</td><td class="align-top">Feuerwehrhelden 2025 (2)</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25418"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">RND</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Vorlage Politik-in-Umfrage (nur kopieren!)<div class="tags"><div class="tag">Vorlage</div></div></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">1</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25406"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Umfrage</td><td class="align-top">MAR</td><td class="align-top">Feuerwehrhelden 2025 (3)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25304"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">LP</td><td class="align-top">MAR</td><td class="align-top">Ticketeria_LebensArt_Kartzow_2025 (Kopie)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25159"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">LP</td><td class="align-top">MAR</td><td class="align-top">Müritz Sail Bootsfahrt&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25158"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">LP</td><td class="align-top">MAR</td><td class="align-top">Müritz Sail SUP-Kurs&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="25155"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Quiz</td><td class="align-top">MAR</td><td class="align-top">Müritz Sail Lizarra&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24953"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Quiz</td><td class="align-top">-</td><td class="align-top">TEST-AIDA Gewinnspiel&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24950"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">LP</td><td class="align-top">VER</td><td class="align-top">Vermarktung 5in5-Newsletter&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">1</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">1</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24945"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">Onepager</td><td class="align-top">MAR</td><td class="align-top">Nikolaikirche - Turmaufstieg</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24905"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">LP</td><td class="align-top">MAR</td><td class="align-top">[PODCAST] E-Paper Probe (Kopie)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24892"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">LP</td><td class="align-top">MAR</td><td class="align-top">Aida Sommer Gewinnspiel&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24868"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Quiz</td><td class="align-top">MAR</td><td class="align-top">Sail Grand Prix Sassnitz&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24647"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Quiz</td><td class="align-top">-</td><td class="align-top">Rügen-Quiz (mit NL-Zuordnung)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Automatisches Kampagnenende#BR#1. Apr 2025 - 12:00 Uhr">01.04.2025&nbsp;<span class="status-icon fal fa-clock"></span></td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">3</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24561"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Onepager</td><td class="align-top">RED</td><td class="align-top">Datenschutz zum OZ-Problem-Melder (Kopie)</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24518"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Kurabgabe in Tourismus-Hotspots für alle Urlauber? (Kopie)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24348"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Umfrage Bundestagswahl (Kopie)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24343"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Umfrage Bundestagswahl (Kopie)&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24327"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">RND</span></td><td class="align-top">Umfrage</td><td class="align-top">RED</td><td class="align-top">Umfrage Bundestagswahl&nbsp;<span class="status-icon fas fa-square-e" data-tooltip="Automatischer Export aktiviert"></span></td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24315"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">OZ</span></td><td class="align-top">Umfrage</td><td class="align-top">-</td><td class="align-top">Wie fanden Sie den Partnertag 2025?</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24310"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">MAZ</span></td><td class="align-top">Umfrage</td><td class="align-top">-</td><td class="align-top">Wie fanden Sie den Partnertag 2025?</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" value="24214"><span></span></label></td><td class="align-top align-center"><span class="table-fav-icon fal fa-star" data-tooltip="Zu &quot;Meine Favouriten&quot; hinzufügen"></span></td><td class="align-top"><span class="text-overflow">RND</span></td><td class="align-top">Onepager</td><td class="align-top">MAR</td><td class="align-top">RND Newsletter Anmeldung 5in5 (Churnstrecke)</td><td class="align-top" data-tooltip="Kampagnenstart#BR#-">-</td><td class="align-top" data-tooltip="Kampagnenende#BR#-">-</td><td class="align-top align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-top align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-top align-right">vorbereitet</td><td class="align-top align-right"><a class="action-icon plain fal fa-magnifying-glass-chart" data-tooltip="Vorschau öffnen"></a><a class="action-icon plain fal fa-link" data-tooltip="Link(s) und Einbindungscode anzeigen"></a><a class="action-icon plain fal fa-ellipsis-h" data-tooltip="Weitere Aktionen"></a><div class="context-menu-container"></div></td></tr></tbody><tfoot><tr><td class="align-top"><label class="table-checkbox"><input type="checkbox" id="markAllCampaigns"><span></span></label></td><td colspan="7"><label for="markAllCampaigns">alle auswählen</label></td><td class="align-right" data-tooltip="Teilnehmer gesamt" style="width: 5.5%;">5</td><td class="align-left" data-tooltip="Teilnehmer noch nicht exportiert" style="width: 5.5%;"></td><td class="align-right" data-tooltip="Registrierungen gesamt" style="width: 5.5%;">1</td><td class="align-left" data-tooltip="Registrierungen noch nicht exportiert" style="width: 5.5%;"></td><td class="align-right" data-tooltip="Bestellungen gesamt" style="width: 5.5%;">–</td><td class="align-left" data-tooltip="Bestellungen noch nicht exportiert" style="width: 5.5%;"></td><td></td><td></td></tr></tfoot></table>
+
+							<div class="list-toolbar-bottom flex-space flex-middle">
+								<div class="list-toolbar-column">
+									<div class="flex-space">
+										<div class="form-control form-control-select multi-action-select">
+											<select class="form-select" name="multi-action" disabled="disabled">
+												<option value="">Ausgewählte Kampagnen...</option>
+																									<option value="publish">&nbsp;&nbsp;&nbsp;Veröffentlichen</option>
+													<option value="stop">&nbsp;&nbsp;&nbsp;Beenden/Pausieren</option>
+													<option value="remove">&nbsp;&nbsp;&nbsp;Löschen</option>
+																																																	<option value="archive">&nbsp;&nbsp;&nbsp;Archivieren</option>
+																																					<option value="exportAddresses">&nbsp;&nbsp;&nbsp;Adressen exportieren</option>
+																																					<option value="changeCategory">&nbsp;&nbsp;&nbsp;Kategorie ändern</option>
+																							</select>
+										</div>
+										<a class="form-button form-button-secondary disabled" data-name="button-multi-action">OK</a>
+									</div>
+								</div>
+								<div class="list-toolbar-column list-toolbar-column-center flex-center pagination-bottom">
+									<div class="pagination light-theme simple-pagination"><ul><li class="disabled"><span class="current prev">‹‹</span></li><li class="active"><span class="current">1</span></li><li><a href="#page-2" class="page-link">2</a></li><li><a href="#page-3" class="page-link">3</a></li><li class=""><span class="ellipse clickable">…</span></li><li><a href="#page-23" class="page-link">23</a></li><li><a href="#page-24" class="page-link">24</a></li><li><a href="#page-2" class="page-link next">››</a></li></ul></div>
+								</div>
+								<div class="list-toolbar-column"></div>
+							</div>
+
+							<div class="card-text align-center form-option message-no-campaigns hidden">
+								<br>
+								<br>
+								Es wurden keine Kampagnen mit den gewählten Kriterien gefunden.
+								<br>
+								<br>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</main>
+		<div class="modal-dialog" data-id="approval">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title">Freigabe für diese Aktion erforderlich</div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<p class="copytext"></p>
+			<p class="messageHeadline">Sie können eine eigene Mitteilung zu Ihrer Anfrage hinzufügen:</p>
+			<textarea class="form-input" name="message"></textarea>
+			<div class="form-buttons align-right">
+				<a class="form-button form-button-secondary" data-name="cancel">Abbrechen</a>
+				<a class="form-button" data-name="confirm"></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-dialog" data-id="approval-publish">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title"></div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<p class="text">
+				<span class="copytext"></span>
+				Es wird eine Nachricht an die betreffenden Administratoren gesendet.
+				Bitte füllen Sie folgende Angaben aus, um eventuelle Rückfragen zu vermeiden:
+			</p>
+			<div class="form-row">
+				<label class="form-label">Start der Aktion (Datum, Uhrzeit)</label>
+				<div class="form-fields flex">
+					<div class="form-control form-width-6of12">
+						<input type="date" name="apprStartDate" class="form-input" required="" placeholder="Datum" data-tooltip="Datum im Format: TT.MM.JJJJ" maxlength="10">
+					</div>
+					<div class="form-control form-width-6of12">
+						<input type="time" name="apprStartTime" class="form-input" required="" placeholder="Uhrzeit" data-tooltip="Uhrzeit im Format: HH:MM" maxlength="5">
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label">Ende der Aktion (Datum, Uhrzeit)</label>
+				<div class="form-fields flex">
+					<div class="form-control form-width-6of12">
+						<input type="date" name="apprEndDate" class="form-input" required="" placeholder="Datum" data-tooltip="Datum im Format: TT.MM.JJJJ" maxlength="10">
+					</div>
+					<div class="form-control form-width-6of12">
+						<input type="time" name="apprEndTime" class="form-input" required="" placeholder="Uhrzeit" data-tooltip="Uhrzeit im Format: HH:MM" maxlength="5">
+					</div>
+				</div>
+			</div>
+			<div class="form-row ">
+				<label class="form-label">Verlinkung</label>
+				<div class="form-fields">
+					<input type="text" class="form-input" name="apprShortLink" required="" placeholder="Kurzlink für die Veröffentlichung" maxlength="30">
+				</div>
+			</div>
+			<div class="apprLeadsOptions hidden">
+				<div class="form-row">
+					<label class="form-label">Leads automatisch exportieren</label>
+					<div class="form-fields">
+						<div class="form-control form-control-select form-width-6of12">
+							<select class="form-select" name="apprExportLeads" required="">
+								<option value="nein" selected="">nein</option>
+								<option value="ja, täglich">ja, täglich</option>
+								<option value="ja, nur am Ende der Aktion">ja, nur am Ende der Aktion</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="apprExportLeadsOptions hidden">
+					<div class="form-row">
+						<label class="form-label">Empfänger der Leads</label>
+						<div class="form-fields">
+							<input type="email" class="form-input" name="apprExportLeadsEmail1" placeholder="E-Mail Empfänger 1" maxlength="50">
+						</div>
+					</div>
+					<div class="form-row">
+						<label class="form-label"></label>
+						<div class="form-fields">
+							<input type="email" class="form-input" name="apprExportLeadsEmail2" placeholder="E-Mail Empfänger 2" maxlength="50">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="apprResultsOptions hidden">
+				<div class="form-row">
+					<label class="form-label">Ergebnisse am Ende der Aktion exportieren</label>
+					<div class="form-fields">
+						<div class="form-control form-control-select form-width-6of12">
+							<select class="form-select" name="apprExportResults" required="">
+								<option value="nein" selected="">nein</option>
+								<option value="ja, mit Adresdaten">ja, mit Adresdaten</option>
+								<option value="ja, ohne Adresdaten">ja, ohne Adresdaten</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="apprExportResultsOptions hidden">
+					<div class="apprExportQuizOptions hidden">
+						<div class="form-row">
+							<label class="form-label">Export filtern nach richtigen Antworten</label>
+							<div class="form-fields">
+								<div class="form-control form-control-select form-width-6of12">
+									<select class="form-select" name="apprExportResultsCorrect" required="">
+										<option value="nein" selected="">nein</option>
+										<option value="ja">ja</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<label class="form-label">Empfänger der Ergebnisse</label>
+						<div class="form-fields">
+							<input type="text" class="form-input" name="apprExportResultsEmail1" placeholder="E-Mail Empfänger 1" maxlength="50">
+						</div>
+					</div>
+					<div class="form-row">
+						<label class="form-label"></label>
+						<div class="form-fields">
+							<input type="text" class="form-input" name="apprExportResultsEmail2" placeholder="E-Mail Empfänger 2" maxlength="50">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<label class="form-label">Hinweise/Anmerkungen</label>
+				<div class="form-fields">
+					<textarea name="apprMessage" class="form-input"></textarea>
+				</div>
+			</div>
+
+			<div class="form-error"></div>
+			<div class="form-buttons align-right">
+				<a class="form-button form-button-secondary" data-name="cancel">Abbrechen</a>
+				<a class="form-button" data-name="confirm">Freigabe anfordern</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-dialog" data-id="distribute-survey-results">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title">Umfrageergebnisse versenden</div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<div class="modal-dialog-content">
+				Möchten Sie die Umfrage-Ergebnisse nun an alle registrierten Teilnehmer (<span class="user-count"></span>) per E-Mail versenden?<br>
+				Bitte prüfen Sie den Text der E-Mail in der Umfrage vor dem Versand.
+			</div>
+			<div class="flex flex-space">
+				<div class="form-width-6of12">
+					<div class="modal-dialog-subtitle">Testversand an Ihre E-Mail-Adresse</div>
+					<p>
+						Sie können die E-Mail beliebig oft als Test an Ihre eigene E-Mail-Adresse (christoph.knoop@rnd.de) zusenden lassen.
+					</p>
+				</div>
+				<div class="form-width-6of12">
+					<div class="modal-dialog-subtitle">Versand an die Teilnehmer</div>
+					<p>
+						Der Versand an die Teilnehmer ist <b>nur einmal möglich</b> und kann <b>nicht rückgängig gemacht werden.</b>
+						Der Versand dieser E-Mails erfolgt in Blöcken a 100 E-Mail-Adressen im Abstand von je 5 Minuten.
+						Dies notwendig, damit die Absende-Adresse dieser E-Mails nicht als Spam eingestuft wird.
+						Den Status der versendeten E-Mails können Sie in der Auswertung einsehen.
+					</p>
+				</div>
+			</div>
+
+			<div class="flex flex-space">
+				<div class="form-width-6of12">
+					<div class="form-buttons">
+						<a class="form-button" data-name="test">Testversand an Ihre E-Mail-Adresse</a>
+					</div>
+				</div>
+				<div class="form-width-6of12">
+					<div class="form-buttons">
+						<a class="form-button" data-name="confirm">Versand an die Teilnehmer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-dialog" data-id="export-leads-doi-email">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title">Download der Leads mit bestätigtem E-Mail Double-OptIn (<span class="lead-count"></span>)</div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<div class="form hidden">
+				<div class="modal-dialog-content">
+					<div class="form-row-shrinked">
+						<label class="form-label">Dateiformat:</label>
+						<div class="form-fields">
+							<div class="form-control">
+								<label class="form-radio"><input type="radio" name="exportLeadDOIEmailFormat" value="xls"><span>Excel</span></label>
+								<label class="form-radio"><input type="radio" name="exportLeadDOIEmailFormat" value="csv"><span>CSV</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row-shrinked marknew-select">
+						<label class="form-label">Markierung entfernen:</label>
+						<div class="form-fields">
+							<div class="form-control">
+								<label class="form-checkbox"><input type="checkbox" name="markExported" checked=""><span>
+									Markierung "neu" (rot) für exportierte Leads entfernen
+									<br><br>
+									(Entfernen Sie die Markierung, wenn Sie die Daten lediglich zum Test oder zur Ansicht herunterladen möchten.)
+								</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="confirm">Leads exportieren</a>
+					<a class="form-button form-button-secondary" data-name="cancel">Abbrechen</a>
+				</div>
+			</div>
+			<div class="processing hidden">
+				<div class="modal-dialog-content">
+					<div class="modal-dialog-clock-animation inverted"></div>
+				</div>
+				<div class="align-center">
+					Die Export-Datei wird erstellt...
+				</div>
+			</div>
+			<div class="success hidden">
+				<div class="modal-dialog-content">
+					Die Export-Datei wurde erfolgreich erstellt.
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="download">Leads herunterladen</a>
+				</div>
+			</div>
+			<div class="error hidden">
+				<div class="form-error visible">Beim Erstellen der Exportdatei ist ein Fehler aufgetreten:<br>
+					<span class="error-message-text"></span>
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="close"><span class="label">Schließen</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-dialog" data-id="export-leads-doi-phone">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title">Download der Leads mit Telefon-OptIn (<span class="lead-count"></span>)</div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<div class="form hidden">
+				<div class="modal-dialog-content">
+					<div class="form-row-shrinked">
+						<label class="form-label">Dateiformat:</label>
+						<div class="form-fields">
+							<div class="form-control">
+								<label class="form-radio"><input type="radio" name="exportLeadDOIPhoneFormat" value="xls"><span>Excel</span></label>
+								<label class="form-radio"><input type="radio" name="exportLeadDOIPhoneFormat" value="csv"><span>CSV</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row-shrinked marknew-select">
+						<label class="form-label">Markierung entfernen:</label>
+						<div class="form-fields">
+							<div class="form-control">
+								<label class="form-checkbox"><input type="checkbox" name="markExported" checked=""><span>
+									Markierung "neu" (rot) für exportierte Leads entfernen
+									<br><br>
+									(Entfernen Sie die Markierung, wenn Sie die Daten lediglich zum Test oder zur Ansicht herunterladen möchten.)
+								</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="confirm">Leads exportieren</a>
+					<a class="form-button form-button-secondary" data-name="cancel">Abbrechen</a>
+				</div>
+			</div>
+			<div class="processing hidden">
+				<div class="modal-dialog-content">
+					<div class="modal-dialog-clock-animation inverted"></div>
+				</div>
+				<div class="align-center">
+					Die Export-Datei wird erstellt...
+				</div>
+			</div>
+			<div class="success hidden">
+				<div class="modal-dialog-content">
+					Die Export-Datei wurde erfolgreich erstellt.
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="download">Leads herunterladen</a>
+				</div>
+			</div>
+			<div class="error hidden">
+				<div class="form-error visible">Beim Erstellen der Exportdatei ist ein Fehler aufgetreten:<br>
+					<span class="error-message-text"></span>
+				</div>
+				<div class="form-buttons">
+					<a class="form-button" data-name="close"><span class="label">Schließen</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-dialog" data-id="new-campaign">
+	<div class="modal-dialog-box">
+		<div class="modal-dialog-head">
+			<div class="modal-dialog-title">Neue Kampagne erstellen</div>
+			<div class="modal-dialog-close fal fa-times"></div>
+		</div>
+		<div class="modal-dialog-inner">
+			<p class="copytext">
+				Bitte wählen Sie aus, für welchen Titel und welche Art von Kampagne Sie erstellen möchten.
+			</p>
+
+			<div class="form-control form-control-select">
+				<select class="form-select" name="brand"><option value="21" data-shortcut="maz">Märkische Allgemeine Zeitung</option><option value="31" data-shortcut="oz">Ostsee-Zeitung</option><option value="70" data-shortcut="rnd">RedaktionsNetzwerk Deutschland</option></select>
+			</div>
+			<br>
+			<div class="form-control form-control-select">
+				<select class="form-select" name="type">
+											<option value="survey">Umfrage</option>
+											<option value="quiz">Quiz</option>
+											<option value="offer">Landingpage</option>
+											<option value="calendar">Kalender</option>
+											<option value="picturecontest">Foto-Contest</option>
+											<option value="onepager">Onepager</option>
+									</select>
+			</div>
+			<br>
+			<div class="form-control">
+				<input type="text" class="form-input" name="title" maxlength="50" placeholder="Name der Kampagne">
+			</div>
+			<br>
+			<div class="form-buttons align-right">
+				<a class="form-button" data-name="confirm">Erstellen</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	window.cmpData = {
+    "activeCampaignEdit": true,
+    "adminEmail": "christoph.knoop@rnd.de",
+    "adminRights": {
+        "role": 30,
+        "accessActions": true
+    },
+    "userRoles": {
+        "ROLE_DEVELOPER": 70,
+        "ROLE_SUPER_ADMIN": 60,
+        "ROLE_BRAND_ADMIN": 50,
+        "ROLE_USER_ADMIN": 40,
+        "ROLE_CAMPAIGN_ADMIN": 30,
+        "ROLE_DATA_EDITOR": 20,
+        "ROLE_EDITOR": 10
+    },
+    "autoStartOffset": 60,
+    "autoEndOffset": 480,
+    "base": "https:\/\/leser-umfrage.de\/",
+    "baseData": "https:\/\/leser-umfrage.de\/",
+    "baseAPI": "https:\/\/leser-umfrage.de\/backend\/",
+    "baseCMS": "https:\/\/leser-umfrage.de\/backend\/",
+    "brandColor": "#193b66",
+    "brandColor2": "#193b66",
+    "brandDomains": [],
+    "brandId": 0,
+    "brandShortCut": "all",
+    "mediaStorage": "localhost",
+    "clientId": "mamaso",
+    "doiActive": false,
+    "domains": {
+        "base": "leser-umfrage.de\/",
+        "backend": "leser-umfrage.de\/backend\/",
+        "webhooks": "*\/webhooks\/"
+    },
+    "defaultActionCode": "00000",
+    "delayUnconfirmedDoiRecords": 0,
+    "encKey": "8c9e7af7dac96260c13d389148a4b99d",
+    "environment": "production",
+    "fullCampaignEditForNonAdmins": false,
+    "iFrameSettings": {
+        "embedType": "code",
+        "delayedLoad": false,
+        "ampAvailable": true
+    },
+    "modules": {
+        "survey": {
+            "group": "campaigns",
+            "title": "Umfrage",
+            "titleShort": "Umfrage",
+            "titleMultiple": "Umfragen",
+            "leadAttribute03Value": "Umfrage",
+            "idMultiple": "surveys",
+            "uri": "leser-umfrage.de\/[BRAND]\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-umfrage.de",
+                "smtpEnabled": false,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            },
+            "subscriberCancellation": true
+        },
+        "quiz": {
+            "group": "campaigns",
+            "title": "Quiz",
+            "titleShort": "Quiz",
+            "titleMultiple": "Quizze",
+            "leadAttribute03Value": "Quiz",
+            "idMultiple": "quizzes",
+            "uri": "leser-quiz.de\/[BRAND]\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-quiz.de",
+                "smtpEnabled": false,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            }
+        },
+        "offer": {
+            "group": "campaigns",
+            "title": "Landingpage",
+            "titleShort": "LP",
+            "titleMultiple": "Landingpages",
+            "leadAttribute03Value": "Landingpage",
+            "idMultiple": "offers",
+            "uri": "leser-angebot.de\/[BRAND]\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-angebot.de",
+                "smtpEnabled": false,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            }
+        },
+        "calendar": {
+            "group": "campaigns",
+            "title": "Kalender",
+            "titleShort": "Kalender",
+            "titleMultiple": "Kalender",
+            "leadAttribute03Value": "Kalender",
+            "idMultiple": "calendars",
+            "uri": "leser-angebot.de\/[BRAND]\/aktion\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-angebot.de",
+                "smtpEnabled": false,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            }
+        },
+        "picturecontest": {
+            "group": "campaigns",
+            "title": "Foto-Contest",
+            "titleShort": "Fotos",
+            "titleMultiple": "Foto-Contests",
+            "leadAttribute03Value": "Umfrage",
+            "uri": "leser-umfrage.de\/[BRAND]\/foto-wettbewerb\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-umfrage.de",
+                "smtpEnabled": true,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            }
+        },
+        "onepager": {
+            "group": "campaigns",
+            "title": "Onepager",
+            "titleShort": "Onepager",
+            "titleMultiple": "Onepager",
+            "uri": "leser-angebot.de\/[BRAND]\/seite\/",
+            "mailConfig": {
+                "emailSenderName": "[BRAND]",
+                "emailAddress": "email-bestaetigung@leser-umfrage.de",
+                "smtpEnabled": true,
+                "smtpHostname": "wp12595664.mailout.server-he.de",
+                "smtpUsername": "wp12595664-webmaster",
+                "smtpPassword": "q34tfwNNe&rfalie",
+                "smtpPort": 587,
+                "smtpSecureType": "tls"
+            }
+        }
+    },
+    "sso": false,
+    "transferProtocol": "https",
+    "ordersEnabled": true,
+    "useActionCodes": true,
+    "newsletters": "",
+    "statusText": {
+        "new": "vorbereitet",
+        "active": "aktiv",
+        "ended": "beendet",
+        "closed": "geschlossen",
+        "archived": "archiviert",
+        "showroom": "Showroom",
+        "approvalRequest": "Freigabe erbeten",
+        "approvalRejected": "Freigabe abgelehnt",
+        "distributeResults": "Ergebn. senden"
+    }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" crossorigin="anonymous"></script>
+
+<script src="https://leser-umfrage.de/js/3rdparty/moment-2.12.0.min.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/moment-2.12.0-locale-de.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-paste-smart.min.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-checklist.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-large.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-small.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-cross-price.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-hr.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/quill-extension-text-colors.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/canvasjs.min.js"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/jquery.simple-pagination.js"></script>
+	<script src="https://leser-umfrage.de/js/backend/backend.min.js?r=20250422-100511"></script>
+<!-- Password strength check -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+<!-- Color picker -->
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+	<script src="https://leser-umfrage.de/js/backend/base.min.js?r=20250422-100511"></script>
+	<script src="https://leser-umfrage.de/js/backend/base-es6.min.js?r=20250422-100511"></script>
+	<script src="https://leser-umfrage.de/js/backend/campaigns-dialogs.min.js?r=20250422-100511"></script>
+<script src="https://leser-umfrage.de/js/3rdparty/qrcode.min.js"></script>
+	<script src="https://leser-umfrage.de/js/backend/campaigns-list.min.js?r=20250422-100511"></script>
+	
+
+<div class="modal-dialog" data-id="standard-dialog"><div class="modal-dialog-box"><div class="modal-dialog-head"><div class="modal-dialog-title"></div></div><div class="modal-dialog-inner"><div class="modal-dialog-content"></div><div class="modal-dialog-progress"><div class="modal-dialog-progress-bar"><div class="modal-dialog-progress-fill"></div></div><div class="modal-dialog-progress-status"></div></div><div class="modal-dialog-clock-animation"></div><div class="form-buttons"><a class="form-button form-button-onprimary" data-name="confirm">OK</a><a class="form-button form-button-onprimary-secondary" data-name="cancel">Abbrechen</a></div></div></div></div><div class="tooltip"></div></body></html>

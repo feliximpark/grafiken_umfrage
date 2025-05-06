@@ -26,7 +26,7 @@
         .container {
             width: 608px;
             height: 342px;
-            padding: 10px 35px 10px 15px; /* Erhöhter rechter Rand (35px statt 20px) */
+            padding: 10px 20px 10px 15px; /* Reduzierter seitlicher Rand */
             box-sizing: border-box;
             background-color: white;
             position: relative;
@@ -35,57 +35,52 @@
         .content {
             width: 100%;
             height: 100%;
-            padding-left: 20px; /* Linker Rand für die gesamte Content-Box */
-            padding-right: 20px; /* Rechter Rand für die gesamte Content-Box */
+            padding-left: 20px; /* Neuer linker Rand für die gesamte Content-Box */
         }
         
         h1 {
             font-family: 'DINNextLTPro-Bold', sans-serif;
             font-weight: 700;
-            font-size: 24px;
+            font-size: 22px;
             color: #2c3e50;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Reduzierter Abstand (vorher 35px) */
             line-height: 1.3;
-            padding-left: 0;
+            padding-left: 0; /* Kein zusätzliches Padding für die Überschrift */
         }
         
         .chart-container {
-            margin-top: 8px; /* Etwas reduziert für mehr Platz */
-            padding-right: 0;
-            padding-left: 0;
+            margin-top: 10px; /* Reduzierter Abstand (vorher 20px) */
+            padding-right: 40px; /* 40px Abstand zum rechten Rand */
+            padding-left: 0; /* Kein Padding, da es bereits im Content ist */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: calc(100% - 110px); /* Erhöht für die Fußnote mit größerer Schrift */
-            overflow: visible; /* Um sicherzustellen, dass lange Texte sichtbar bleiben */
+            justify-content: space-between; /* Gleichmäßige Verteilung der Balken */
+            height: calc(100% - 100px); /* Reduzierte Höhe für Anmerkung (vorher 110px) */
         }
         
         .chart-row {
             display: flex;
-            align-items: center;
+            align-items: center; /* Zentriert die Elemente vertikal */
             font-family: 'Inter-Regular', sans-serif;
-            height: 48px;
-            overflow: visible; /* Um sicherzustellen, dass lange Texte sichtbar bleiben */
+            height: 45px; /* Definierte Höhe für jede Zeile */
         }
         
         .label {
-            width: 110px;
-            font-size: 18px;
-            text-align: left;
-            padding-right: 15px;
+            width: 100px; /* Vergrößerte Breite für die Labels */
+            font-size: 16px;
+            text-align: left; /* Linksbündige Ausrichtung */
+            padding-right: 15px; /* Reduzierter Abstand */
             color: #333;
             flex-shrink: 0;
             line-height: 1.4;
-            overflow-wrap: break-word; /* Ermöglicht das Umbrechen längerer Wörter */
-            word-break: normal; /* Normales Textumbruchverhalten */
         }
         
         .bar-container {
             flex-grow: 1;
-            height: 48px;
+            height: 45px;
             position: relative;
-            margin-right: 10px;
+            margin-right: 10px; /* Etwas Abstand am rechten Rand */
         }
         
         .bar {
@@ -101,57 +96,68 @@
         .percentage {
             color: white;
             padding-right: 10px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
         }
         
         .percentage-outside {
             position: absolute;
             left: auto;
-            right: -35px;
+            right: -45px; /* Erhöhter Abstand um 5px (vorher -40px) */
             top: 0;
             height: 100%;
             display: flex;
             align-items: center;
             color: #444;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
         }
         
         .footnote {
             font-family: 'Inter-Regular', sans-serif;
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
             text-align: left;
             margin-top: 25px;
-            padding-left: 0;
+            padding-left: 0; /* Kein zusätzliches Padding für die Fußnote */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <h1>Sind Sie mit dem neuen Feature zufrieden?</h1>
+            <h1>Hätten Sie dem Koalitionsvertrag zwischen CDU und SPD auch zugestimmt?</h1>
             
             <div class="chart-container">
-                <div class="chart-row" style="margin-top: 40px;">
-                    <div class="label" style="font-size: 18px; width: 110px;">Ja.</div>
+                <div class="chart-row">
+                    <div class="label">Ja</div>
                     <div class="bar-container">
-                        <div class="bar" style="width: 100.0%;">
-                            <span class="percentage">65,8%</span>
+                        <div class="bar" style="width: 57.3%;">
+                            <span class="percentage">34,9%</span>
                         </div>
                     </div>
                 </div>
+                
+                <div class="chart-row">
+                    <div class="label">Nein</div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 100%;">
+                            <span class="percentage">60,9%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-row">
+                    <div class="label">Ich weiß nicht</div>
+                    <div class="bar-container">
+                        <div class="bar" style="width: 7.1%;">
+                            <span class="percentage-outside">4,3%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-                <div class="chart-row" style="margin-top: -60px;">
-                    <div class="label" style="font-size: 18px; width: 110px;">Nein.</div>
-                    <div class="bar-container">
-                        <div class="bar" style="width: 51.975683890577514%;">
-                            <span class="percentage">34,2%</span>
-                        </div>
-                    </div>
-                </div>
-            </div><div class="footnote">Summe kann aufgrund von Rundungen von 100% abweichen.</div>
+            <div class="footnote">Summe kann aufgrund von Rundungen von 100% abweichen.</div>
         </div>
     </div>
 </body>

@@ -48,7 +48,8 @@ async function screenshot() {
     // Browser mit expliziten Optionen starten
     browser = await puppeteer.launch({
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      timeout: 30000 // Erhöhtes Timeout auf 30 Sekunden
     });
     
     const page = await browser.newPage();
@@ -62,11 +63,11 @@ async function screenshot() {
     
     // HTML-Seite öffnen (lokaler Pfad)
     const htmlPath = path.join(__dirname, 'umfrage.html');
-    await page.goto(`file://${htmlPath}`);
+    await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0', timeout: 30000 });
     
-    // Warten, bis die Schriftarten geladen sind (5 Sekunden)
-    console.log('Warte 5 Sekunden, bis die Schriftarten geladen sind...');
-    await sleep(5000);
+    // Warten, bis die Schriftarten geladen sind (8 Sekunden)
+    console.log('Warte 8 Sekunden, bis die Schriftarten geladen sind...');
+    await sleep(8000);
     
     // Screenshot erstellen
     console.log('Erstelle Screenshot...');
@@ -74,7 +75,8 @@ async function screenshot() {
       path: config.outputPath,
       fullPage: config.fullPage,
       type: config.format,
-      quality: config.format === 'jpeg' ? config.quality : undefined
+      quality: config.format === 'jpeg' ? config.quality : undefined,
+      omitBackground: false
     });
     
     console.log(`Screenshot wurde gespeichert als: ${config.outputPath}`);
@@ -89,7 +91,11 @@ async function screenshot() {
   } finally {
     // Browser immer schließen, auch bei Fehlern
     if (browser) {
-      await browser.close();
+      try {
+        await browser.close();
+      } catch (closeError) {
+        console.error('Fehler beim Schließen des Browsers:', closeError);
+      }
     }
   }
 }
